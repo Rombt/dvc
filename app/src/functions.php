@@ -123,3 +123,10 @@ function add_class_to_nav_menu_links( $atts, $item, $args ) {
 	return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'add_class_to_nav_menu_links', 10, 3 );
+
+function custom_posts_per_page( $query ) {
+	if ( $query->is_main_query() && ! is_admin() ) {
+		$query->set( 'posts_per_page', 3 );
+	}
+}
+add_action( 'pre_get_posts', 'custom_posts_per_page' );

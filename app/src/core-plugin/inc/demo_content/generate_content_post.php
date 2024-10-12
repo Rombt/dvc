@@ -62,7 +62,7 @@ function generate_content_post() {
 	}
 
 
-	for ( $i = 0; $i < 10; $i++ ) {
+	for ( $i = 1; $i < 11; $i++ ) {
 
 		$arr_post_categories_id = [];
 		for ( $q = 0; $q < mt_rand( 2, 4 ); $q++ ) {
@@ -78,7 +78,7 @@ function generate_content_post() {
 
 
 		$date = generateRandomDate( "2022-01-01", "2024-10-07" );
-		$title = "12 unique examples of photography portfolio";
+		$title = "$i.    12 unique examples of photography portfolio";
 		$text = generateRandomText();
 
 		$post_data = [ 

@@ -2504,6 +2504,7 @@ h2 {
   margin-top: 20px;
   padding: 20px 36px;
   text-decoration: none;
+  pointer-events: auto;
 }
 
 .header-blog {
@@ -3229,5 +3230,15 @@ h2 {
   .team-slide-wrapper {
     width: 100%;
     margin-right: 0%;
+  }
+}
+
+.disabled {
+  cursor: default;
+  background-color: #bd90a8;
+  pointer-events: none;
+
+  .title-medium {
+    color: #7973a4;
   }
 }

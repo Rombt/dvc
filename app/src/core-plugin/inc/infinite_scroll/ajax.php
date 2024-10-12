@@ -2,46 +2,44 @@
 
 function infinite_scroll() {
 
-	$paged = intval( $_POST['paged'] );
+
+	$count_posts = wp_count_posts();
+	$published_posts = $count_posts->publish - 3;
 
 	$args = array(
 		'post_type' => 'post',
-		'paged' => $paged,
-		'posts_per_page' => 9,
-		'orderby' => array(
-			'title' => 'ASC',
-		),
+		'paged' => 2,
+		'posts_per_page' => $published_posts,
+		'offset' => 3,
 	);
 
 	$query = new WP_Query( $args );
 
-	// wp_send_json_success( $query );
-
-	$text = '';
 
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			// $category = trim( get_the_terms( get_post(), 'location' )[0]->name, " \t" );
 
+			if ( has_post_thumbnail() ) {
+				$image_url = get_the_post_thumbnail_url();
+			}
 
-			the_title();
-			// if ( has_post_thumbnail() ) {
-			// 	$image = get_the_post_thumbnail();
-			// } else {
-			// 	$image = wp_get_attachment_image( 532, 'rmbt_post-img' );
-			// }
+			$categories = get_the_category();
+			$arr_category_names = [];
 
-			// get_template_part( 'template-parts/components/card/card', null, [ 
-			// 	'class' => 'rmbt-card-destination',
-			// 	'tag-img' => $image,
-			// 	'date' => get_the_date(),
-			// 	'title' => get_the_title(),
-			// 	'text' => $text,
-			// 	'category' => $category,
-			// 	'comments_number' => get_comments_number(),
-			// 	'link_to_post' => get_the_permalink(),
-			// ] );
+			if ( ! empty( $categories ) ) {
+				foreach ( $categories as $category ) {
+					$arr_category_names[] = $category->name;
+				}
+			}
+
+			get_template_part( 'template-parts/components/card/card', null, [ 
+				'img-url' => $image_url,
+				'link_to_post' => get_the_permalink(),
+				'title' => get_the_title(),
+				'text' => get_the_excerpt(),
+				'category_names' => $arr_category_names,
+			] );
 
 		}
 	} else {

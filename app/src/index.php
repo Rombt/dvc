@@ -30,7 +30,6 @@
 			<div class="content-left">
 
 				<?php
-				$i_post = 0;
 				if ( have_posts() ) {
 					while ( have_posts() ) :
 						the_post();
@@ -62,7 +61,9 @@
 				}
 				?>
 
-
+				<a href="#" id="scroll-all" class="next-button w-inline-block">
+					<div class="title-medium">Show all</div>
+				</a>
 			</div>
 		</div>
 	</div>
