@@ -22,7 +22,7 @@ export const path = {
   ThemeName: THEME_NAME,
   srcPluginName: 'core-plugin', // set name your plugin for development version
   RootPath: ROOT_PATH,
-  proxy: [`http://multisite/`, `http://multisite/`],
+  proxy: [`http://dvc.multisite/`, `http://dvc.multisite/`],
 
   get src() {
     return {
@@ -137,7 +137,7 @@ export const path = {
     const path = {
       src: {
         html: [`${this.src.php}/assets/img/**/*.{jpg,jpeg,png,gif,webp,ico}`],
-        php: [`${this.src.php}/assets/img/**/*.{jpg,jpeg,png,gif,webp,ico}`],
+        php: [`${this.src.php}/assets/img/**/*.{jpg,jpeg,png,gif,webp,ico,svg}`],
         plug: [`${this.src.plug}/assets/img/**/*.{jpg,jpeg,png,gif,webp,ico}`],
       },
       prod: {
