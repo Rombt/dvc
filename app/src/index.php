@@ -1,6 +1,27 @@
 <?php get_header(); ?>
 
 
+<?php
+
+$args = [ 
+	'type' => 'post',
+	'taxonomy' => 'post_tag',
+	'hide_empty' => true,
+];
+
+$tags = get_categories( $args );
+
+$arr_tags = [];
+foreach ( $tags as $tag ) {
+	if ( $tag->name !== 'Без рубрики' ) {
+		$arr_tags[] = [ 
+			'name' => $tag->name,
+			'id' => $tag->term_id,
+		];
+	}
+} ?>
+
+
 
 <div class="content-section">
 	<div class="container">
@@ -9,21 +30,13 @@
 				<div class="stick-wrapper">
 					<div class="categories-block">
 						<div class="title-large">Categories</div>
-						<a href="#" class="categories-pill selected w-inline-block">
-							<div class="title-small pink">Product</div>
-						</a>
-						<a href="#" class="categories-pill w-inline-block">
-							<div class="title-small pink">Engineering</div>
-						</a>
-						<a href="#" class="categories-pill w-inline-block">
-							<div class="title-small pink">Technology</div>
-						</a>
-						<a href="#" class="categories-pill w-inline-block">
-							<div class="title-small pink">Company</div>
-						</a>
-						<a href="#" class="categories-pill w-inline-block">
-							<div class="title-small pink">Saas</div>
-						</a>
+						<?php foreach ( $arr_tags as $tag ) : ?>
+							<!-- <a href="<?= get_tag_link( $tag['id'] ) ?>" -->
+							<a href="#" class="categories-pill selected w-inline-block title-small pink filter-button"
+								data-id-tag='<?= $tag['id'] ?>'>
+								<?= $tag['name'] ?>
+							</a>
+						<?php endforeach ?>
 					</div>
 				</div>
 			</div>
@@ -38,12 +51,12 @@
 							$image_url = get_the_post_thumbnail_url();
 						}
 
-						$categories = get_the_category();
-						$arr_category_names = [];
+						$tags = get_the_tags();
+						$arr_tag_names = [];
 
-						if ( ! empty( $categories ) ) {
-							foreach ( $categories as $category ) {
-								$arr_category_names[] = $category->name;
+						if ( ! empty( $tags ) ) {
+							foreach ( $tags as $tag ) {
+								$arr_tag_names[] = $tag->name;
 							}
 						}
 
@@ -52,7 +65,7 @@
 							'link_to_post' => get_the_permalink(),
 							'title' => get_the_title(),
 							'text' => get_the_excerpt(),
-							'category_names' => $arr_category_names,
+							'category_names' => $arr_tag_names,
 						] );
 
 					endwhile;
@@ -71,7 +84,7 @@
 <div class="content-section form-block">
 	<div class="container"></div>
 	<div class="form-block w-form">
-		<form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-2">
+		<!-- <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-2">
 			<label for="name" class="title-large">Name</label>
 			<input class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="" type="text"
 				id="name" />
@@ -79,7 +92,10 @@
 			<input class="input w-input" maxlength="256" name="email" data-name="Email" placeholder="" type="email"
 				id="email" required="" />
 			<input type="submit" data-wait="Please wait..." class="next-button w-button" value="Submit" />
-		</form>
+		</form> -->
+
+		<?= do_shortcode( '[contact-form-7 id="a44d07a" title="blog-page"]' ) ?>
+
 		<div class="w-form-done">
 			<div>Thank you! Your submission has been received!</div>
 		</div>

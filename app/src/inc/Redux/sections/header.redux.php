@@ -14,17 +14,18 @@ Redux::set_section(
 		// 'icon'             => 'el el-home',
 		'fields' => array(
 
-
 			array(
-				'id' => 'rmbt-blog-page-title',
+				'id' => 'rmbt-blog-page-title_uk',
 				'type' => 'text',
-				'title' => esc_html__( 'Title of News Block', RMBT_TEXT_DOMAIN_THEME ),
-				'default' => esc_html__( 'TEST TASK TITLE', RMBT_TEXT_DOMAIN_THEME ),
+				'title' => esc_html__( 'Title of blog page on Ukrainian', RMBT_TEXT_DOMAIN_THEME ),
+				'default' => esc_html( 'ЗАГОЛОВОК ТЕСТОВОГО ЗАВДАННЯ' ),
 			),
-
-
-
-
+			array(
+				'id' => 'rmbt-blog-page-title_en',
+				'type' => 'text',
+				'title' => esc_html__( 'Title of blog page on England', RMBT_TEXT_DOMAIN_THEME ),
+				'default' => esc_html( 'TEST TASK TITLE' ),
+			),
 
 		),
 	)

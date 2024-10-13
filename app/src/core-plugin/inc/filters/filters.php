@@ -1,33 +1,21 @@
 <?php
 
-function infinite_scroll() {
 
-	$show_all = $_POST['show_all'];
+function filters() {
 
-	if ( ! $show_all ) {
-
-		$count_posts = wp_count_posts();
-		$published_posts = $count_posts->publish - 3;
-
-		$args = array(
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'paged' => 2,
-			'posts_per_page' => $published_posts,
-			'offset' => 3,
-		);
-	} else {
-
-		$args = array(
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'posts_per_page' => -1,
-		);
+	$tag_id = $_POST['id_tag'];
 
 
-	}
+	$args = array(
+		'post_type' => 'post',
+		'post_status' => 'publish',
+		'paged' => 2,
+		'posts_per_page' => -1,
+		'tag_id' => $tag_id,
+	);
 
 	$query = new WP_Query( $args );
+
 
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
@@ -38,6 +26,8 @@ function infinite_scroll() {
 			}
 
 			$tags = get_the_tags();
+
+
 			$arr_tag_names = [];
 
 			if ( ! empty( $tags ) ) {
@@ -64,5 +54,5 @@ function infinite_scroll() {
 
 }
 
-add_action( 'wp_ajax_infinite_scroll', 'infinite_scroll' );
-add_action( 'wp_ajax_nopriv_infinite_scroll', 'infinite_scroll' );
+add_action( 'wp_ajax_filters', 'filters' );
+add_action( 'wp_ajax_nopriv_filters', 'filters' );

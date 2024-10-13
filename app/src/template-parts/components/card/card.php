@@ -1,5 +1,5 @@
 <a href="/blog-article" class="blog-item w-inline-block">
-	<div class="blog-image-wrap">
+	<div class="wrap-img blog-image-wrap">
 		<img src="<?php echo $args['img-url'] ?>" width="380" alt="" class="blog-image" />
 	</div>
 	<div class="blog-content">

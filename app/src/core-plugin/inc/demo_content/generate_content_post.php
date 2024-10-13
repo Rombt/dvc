@@ -1,6 +1,6 @@
 <?php
 
-$my_categories = [ 
+$my_tags = [ 
 	'Product',
 	'Engineering',
 	'Technology',
@@ -16,26 +16,23 @@ $my_categories = [
 function generate_content_post() {
 
 	$args = [ 
-		'taxonomy' => 'category',
+		'taxonomy' => 'post_tag',
 		'hide_empty' => 0,
 	];
 
-	$categories = get_categories( $args );
+	$tags = get_terms( $args );
 
-
-	$my_categories = [];
-	foreach ( $categories as $category ) {
-		if ( $category->name !== 'Без рубрики' ) {
-			$my_categories[] = [ 
-				'name' => $category->name,
-				'id' => $category->term_id,
+	$my_tags = [];
+	foreach ( $tags as $tag ) {
+		if ( $tag->name !== 'Без рубрики' ) {
+			$my_tags[] = [ 
+				'name' => $tag->name,
+				'id' => $tag->term_id,
 			];
 		}
 	}
 
-
-
-	$image_path = wp_upload_dir()['basedir'] . '/2024/10/coming-soon_0-1.jpg';
+	$image_path = wp_upload_dir()['basedir'] . '/2024/10/no-img.jpeg';
 	$attachment = array(
 		'guid' => wp_upload_dir()['url'] . '/' . basename( $image_path ),
 		'post_mime_type' => mime_content_type( $image_path ),
@@ -64,15 +61,15 @@ function generate_content_post() {
 
 	for ( $i = 1; $i < 11; $i++ ) {
 
-		$arr_post_categories_id = [];
+		$arr_post_tags_id = [];
 		for ( $q = 0; $q < mt_rand( 2, 4 ); $q++ ) {
 
-			$random_index = mt_rand( 0, count( $my_categories ) - 1 );
+			$random_index = mt_rand( 0, count( $my_tags ) - 1 );
 			if ( $q === 0 ) {
-				$country = $my_categories[ $random_index ]['name'];
+				$country = $my_tags[ $random_index ]['name'];
 			}
-			$category_id = $my_categories[ $random_index ]['id'];
-			$arr_post_categories_id[] = $category_id;
+			$category_id = $my_tags[ $random_index ]['id'];
+			$arr_post_tags_id[] = $category_id;
 		}
 
 
@@ -86,11 +83,12 @@ function generate_content_post() {
 			'post_content' => $text,
 			'post_status' => 'publish',
 			'post_author' => 1,
-			'post_category' => $arr_post_categories_id,
 			'post_date' => $date,
 		];
 
 		$post_id = wp_insert_post( $post_data );
+
+		wp_set_post_terms( $post_id, $arr_post_tags_id, 'post_tag' );
 
 		if ( $post_id ) {
 			if ( $attachment_id ) {
@@ -107,11 +105,11 @@ function generate_content_post() {
 }
 
 
-
+/** создать категории  */
 // function create_custom_categories() {
-// 	global $my_categories;
+// 	global $my_tags;
 
-// 	foreach ( $my_categories as $category_name ) {
+// 	foreach ( $my_tags as $category_name ) {
 // 		if ( ! term_exists( $category_name, 'category' ) ) {
 // 			wp_insert_term(
 // 				$category_name,
@@ -121,3 +119,22 @@ function generate_content_post() {
 // 	}
 // }
 // add_action( 'init', 'create_custom_categories' );
+
+
+
+/** создать теги  */
+
+function create_custom_tags() {
+	global $my_tags;
+
+	foreach ( $my_tags as $tag_name ) {
+		if ( ! term_exists( $tag_name, 'post_tag' ) ) {
+			wp_insert_term(
+				$tag_name,
+				'post_tag'
+			);
+		}
+	}
+}
+
+add_action( 'init', 'create_custom_tags' );

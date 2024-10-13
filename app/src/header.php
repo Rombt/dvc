@@ -21,6 +21,13 @@
 <body <?php body_class(); ?>>
    <?php wp_body_open(); ?>
 
+   <?php
+	if ( function_exists( 'pll_current_language' ) ) {
+		$locale = explode( '_', pll_current_language( 'locale' ) )[0];
+	}
+	?>
+
+
    <div class="header">
       <div class="navigation w-nav">
          <div class="navigation-container-full">
@@ -42,6 +49,6 @@
          </div>
       </div>
       <div class="title-centre">
-         <h1 class="heading-h1"> <?php echo rmbt_get_redux_field( 'rmbt-blog-page-title', 1 ) ?> </h1>
+         <h1 class="heading-h1"> <?php echo rmbt_get_redux_field( 'rmbt-blog-page-title_' . $locale, 1 ) ?> </h1>
       </div>
    </div>

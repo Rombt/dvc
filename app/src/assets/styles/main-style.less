@@ -2238,7 +2238,7 @@ h2 {
 
 .heading-h1 {
   text-align: center;
-  max-width: 650px;
+  max-width: 750px;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 1.1;
@@ -2268,10 +2268,10 @@ h2 {
 .content-left {
   grid-column-gap: 16px;
   grid-row-gap: 40px;
-  flex-direction: column;
   grid-template-rows: auto auto auto auto;
   grid-template-columns: 1fr;
   grid-auto-columns: 1fr;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   display: flex;
@@ -2294,6 +2294,11 @@ h2 {
   text-decoration: none;
   display: grid;
   box-shadow: 0 22px 34px #0000000f;
+
+  .wrap-img {
+    width: 572px;
+    height: 467px;
+  }
 }
 
 .blog-image {
@@ -3240,5 +3245,42 @@ h2 {
 
   .title-medium {
     color: #7973a4;
+  }
+}
+
+.active {
+  background-color: #babcea !important;
+  color: #d74494 !important;
+}
+
+.wpcf7-form {
+  font-family: Arial;
+
+  .title-large {
+    text-align: center;
+
+    input {
+      margin-top: 10px;
+    }
+  }
+
+  .wrap-submit {
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 20px;
+
+      input {
+        width: 118px;
+      }
+    }
+  }
+
+  .wpcf7-response-output {
+    font-size: 18px;
+    line-height: 120%;
+    text-align: center;
+    padding: 15px 10px 15px 10px !important;
   }
 }
