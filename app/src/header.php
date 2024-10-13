@@ -49,6 +49,16 @@
          </div>
       </div>
       <div class="title-centre">
+
+
+         <?php if ( is_home() ) { ?>
          <h1 class="heading-h1"> <?php echo rmbt_get_redux_field( 'rmbt-blog-page-title_' . $locale, 1 ) ?> </h1>
+         <?php } elseif ( is_single() ) { ?>
+         <h1 class="heading-h1"> <?php get_the_title() ?> </h1>
+         <?php } elseif ( is_404() ) { ?>
+         <h1 class="heading-h1"> <?php echo rmbt_get_redux_field( 'rmbt-404-page-title_' . $locale, 1 ) ?> </h1>
+
+         <?php } ?>
+
       </div>
    </div>

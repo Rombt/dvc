@@ -21,8 +21,6 @@ foreach ( $tags as $tag ) {
 	}
 } ?>
 
-
-
 <div class="content-section">
 	<div class="container">
 		<div class="w-layout-grid blog-grid">
@@ -66,6 +64,7 @@ foreach ( $tags as $tag ) {
 							'title' => get_the_title(),
 							'text' => get_the_excerpt(),
 							'category_names' => $arr_tag_names,
+							'link_to_post' => get_the_permalink(),
 						] );
 
 					endwhile;
