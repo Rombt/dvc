@@ -83,16 +83,6 @@ foreach ( $tags as $tag ) {
 <div class="content-section form-block">
 	<div class="container"></div>
 	<div class="form-block w-form">
-		<!-- <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-2">
-			<label for="name" class="title-large">Name</label>
-			<input class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="" type="text"
-				id="name" />
-			<label for="email" class="title-large">Email Address</label>
-			<input class="input w-input" maxlength="256" name="email" data-name="Email" placeholder="" type="email"
-				id="email" required="" />
-			<input type="submit" data-wait="Please wait..." class="next-button w-button" value="Submit" />
-		</form> -->
-
 		<?= do_shortcode( '[contact-form-7 id="a44d07a" title="blog-page"]' ) ?>
 
 		<div class="w-form-done">

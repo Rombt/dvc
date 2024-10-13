@@ -1,11 +1,19 @@
 <?php
 
+// $my_tags = [ 
+// 	'Product',
+// 	'Engineering',
+// 	'Technology',
+// 	'Company',
+// 	'Saa',
+// ];
+
 $my_tags = [ 
-	'Product',
-	'Engineering',
-	'Technology',
-	'Company',
-	'Saa',
+	"Продукт",
+	"Інженерія",
+	"Технологія",
+	"Компанія",
+	"Saa",
 ];
 
 
@@ -50,7 +58,7 @@ function generate_content_post() {
 	}
 
 	function generateRandomText( $minWords = 30, $maxWords = 50 ) {
-		$lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam accumsan justo ut nulla ornare, nec tincidunt justo consectetur. Donec sit amet risus dapibus, consequat lacus ut, tincidunt nulla.";
+		$lorem = "Під час складання у вас є багато варіантів вибору ваш власний веб-сайт з онлайн-портфоліо фотографій.";
 		$wordsArray = explode( " ", $lorem );
 		shuffle( $wordsArray );
 
@@ -75,7 +83,7 @@ function generate_content_post() {
 
 
 		$date = generateRandomDate( "2022-01-01", "2024-10-07" );
-		$title = "$i.    12 unique examples of photography portfolio";
+		$title = "$i.    12 унікальних прикладів веб-сайтів з фотопортфоліо";
 		$text = generateRandomText();
 
 		$post_data = [ 
