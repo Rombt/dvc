@@ -33,6 +33,8 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/infinite_scroll/ajax.php';
 
 require_once plugin_dir_path( __FILE__ ) . 'inc/filters/filters.php';
 
+require_once plugin_dir_path( __FILE__ ) . 'inc/shortcodes/shortcodes.php';
+
 
 function rmbt_get_images_sizes() {
 
