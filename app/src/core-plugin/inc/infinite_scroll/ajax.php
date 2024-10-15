@@ -2,30 +2,12 @@
 
 function infinite_scroll() {
 
-	$show_all = $_POST['show_all'];
+	$args = array(
+		'post_type' => 'post',
+		'post_status' => 'publish',
+		'posts_per_page' => -1,
+	);
 
-	if ( ! $show_all ) {
-
-		$count_posts = wp_count_posts();
-		$published_posts = $count_posts->publish - 3;
-
-		$args = array(
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'paged' => 2,
-			'posts_per_page' => $published_posts,
-			'offset' => 3,
-		);
-	} else {
-
-		$args = array(
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'posts_per_page' => -1,
-		);
-
-
-	}
 
 	$query = new WP_Query( $args );
 

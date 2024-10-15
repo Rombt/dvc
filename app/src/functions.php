@@ -58,7 +58,6 @@ function rmbt_site_setup() {
 	register_nav_menus(
 		array(
 			'header_nav_lang' => esc_html__( 'rmbt_header_language', RMBT_TEXT_DOMAIN_THEME ),
-			// 'header_nav' => esc_html__( 'rmbt_Header Navigation', RMBT_TEXT_DOMAIN_THEME ),
 		)
 	);
 
@@ -67,10 +66,6 @@ function rmbt_site_setup() {
 }
 add_action( 'after_setup_theme', 'rmbt_site_setup' );
 
-function simple_rmbt_theme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'simple_' . RMBT_TEXT_DOMAIN_THEME . '_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'simple_rmbt_theme_content_width', 0 );
 
 function rmbt_theme_register_required_plugins() {
 	$plugins = array(
@@ -83,12 +78,6 @@ function rmbt_theme_register_required_plugins() {
 			'force_activation' => false,
 			'force_deactivation' => false,
 		),
-
-		// array(
-		// 	'name' => 'Advanced Custom Fields',
-		// 	'slug' => 'advanced-custom-fields',
-		// 	'required' => true,
-		// ),
 
 		array(
 			'name' => 'Redux Framework',

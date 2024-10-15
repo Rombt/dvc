@@ -5,11 +5,11 @@ jQuery(function ($) {
     e.preventDefault();
     let showAll = false;
 
-    const activeFilter = $('.categories-block  a.filter-button.active');
-    if (activeFilter.length > 0) {
-      $('.categories-block  a.filter-button.active').removeClass('active');
-      showAll = true;
-    }
+    // const activeFilter = $('.categories-block  a.filter-button.active');
+    // if (activeFilter.length > 0) {
+    //   $('.categories-block  a.filter-button.active').removeClass('active');
+    //   showAll = true;
+    // }
 
     $.ajax({
       url: dvcAppData.ajaxUrl,
@@ -19,9 +19,7 @@ jQuery(function ($) {
         show_all: showAll,
       },
       success: function (data) {
-        if (showAll) {
-          $('.content-left a:not(#scroll-all)').remove();
-        }
+        $('.content-left a:not(#scroll-all)').remove();
         $(data).insertBefore(buttonShowAll);
         buttonShowAll.addClass('disabled');
       },

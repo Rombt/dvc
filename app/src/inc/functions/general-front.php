@@ -358,15 +358,25 @@ function rmbt_redux_img( $id_field_pic, $alt = "", $id_svg = '' ) {
 function rmbt_get_redux_field( $id_field, $kses = false, $all_tags_allowed = false ) {
 	global $rmbt_theme_options;
 
-	if ( ! array_key_exists( $id_field, $rmbt_theme_options ) )
+
+	if ( ! class_exists( 'ReduxFramework' ) ) {
 		return "";
+	}
+
+	if ( ! isset( $rmbt_theme_options ) ) {
+		return "";
+	}
+
+	if (! array_key_exists( $id_field, $rmbt_theme_options ) ) {
+		return "";
+	}
 
 	if ( $kses ) {
-		return class_exists( 'ReduxFramework' ) ? wp_kses( $rmbt_theme_options[ $id_field ], 'post' ) : "";
+		return wp_kses( $rmbt_theme_options[ $id_field ], 'post' );
 	} elseif ( $all_tags_allowed ) {
-		return class_exists( 'ReduxFramework' ) ? $rmbt_theme_options[ $id_field ] : "";
+		return $rmbt_theme_options[ $id_field ];
 	}
-	return class_exists( 'ReduxFramework' ) ? esc_html__( $rmbt_theme_options[ $id_field ] ) : "";
+	return esc_html__( $rmbt_theme_options[ $id_field ] );
 }
 
 function rmbt_phone_number_clear_redux( $phone_number ) {
